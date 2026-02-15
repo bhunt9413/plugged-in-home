@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon-180x180.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plugged In Home | Local IT Support</title>
+
+    <!-- Prevent light/dark "flash" before React loads -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("pih-theme");
+          var systemDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme =
+            saved === "light" || saved === "dark"
+              ? saved
+              : systemDark
+              ? "dark"
+              : "light";
+          if (theme === "dark") document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <form
+      name="support"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="name" />
+      <input type="text" name="phone" />
+      <input type="email" name="email" />
+      <select name="service"></select>
+      <textarea name="message"></textarea>
+    </form>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
