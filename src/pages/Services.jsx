@@ -56,36 +56,53 @@ const SERVICES = [
 const PLANS = [
   {
     title: "Remote Support",
-    price: "Starting at $95",
+    price: "Starting at $115",
     badge: "Fast",
     bullets: [
-      "Ideal for software issues",
-      "Screen-share troubleshooting",
-      "Account + settings fixes",
+      "Direct session with an experienced IT professional (not outsourced support)",
+      "Structured remote diagnostics and guided resolution",
+      "Microsoft 365, email, account, and software troubleshooting",
+      "Security-focused fixes with prevention recommendations",
       "Most issues resolved within 60–90 minutes",
     ],
+    cta: "Request Remote Support",
   },
   {
     title: "On-Site Visit",
-    price: "Starting at $125",
+    price: "Starting at $145",
     badge: "Local",
     bullets: [
-      "Includes travel within Elkhart area",
-      "Networking and device setup",
-      "Hands-on troubleshooting",
-      "Clear pricing confirmed before work begins",
+      "In-person diagnostics and hands-on troubleshooting",
+      "Network, Wi-Fi, workstation, and printer resolution",
+      "Root cause analysis — not just quick fixes",
+      "Clear explanation of what happened and how to prevent repeats",
+      "Travel included within the Elkhart area",
     ],
+    cta: "Request On-Site Visit",
   },
   {
-    title: "Small Business Support",
-    price: "Custom ongoing plans available",
-    badge: "Pro",
+    title: "Small Business Priority Support",
+    price: "$649 / month (up to 5 users)",
+    badge: "Business",
     bullets: [
-      "Priority support",
-      "Workstations, Wi-Fi & printers",
-      "Security best practices",
-      "Reliable local IT partner",
+      "Priority scheduling + faster response",
+      "Remote support included (common issues handled same day when possible)",
+      "Includes up to 4 hours on-site per month (Elkhart area)",
+      "Workstations, Wi-Fi, printers, and Microsoft 365 basics",
+      "Vendor coordination (ISP, printer support, software support)",
+      "Quarterly tech check-in to prevent repeat issues",
     ],
+    perCall: [
+      "You submit the issue (call, text, or email) with a quick description",
+      "I confirm scope + next steps, then start remote triage first",
+      "If it can’t be solved remotely, we schedule on-site within your included hours",
+      "After resolution, you get a short summary + recommendations to avoid repeats",
+    ],
+    finePrint: [
+      "Does not include 24/7 monitoring, backup management, or security tooling (available in future managed plans).",
+      "Work outside included hours is billed at a discounted business rate.",
+    ],
+    cta: "Request Business Support",
   },
 ];
 
@@ -160,7 +177,7 @@ export default function Services() {
         </div>
       </section>
 
-            {/* Pricing Plans */}
+      {/* Pricing Plans (Updated) */}
       <section className="border-t border-slate-200/70 dark:border-slate-800">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <h2 className="text-2xl font-semibold">Support Options</h2>
@@ -201,11 +218,39 @@ export default function Services() {
                   </Link>
                 )}
 
+                {/* Small Business: What to expect per request */}
+                {p.perCall && (
+                  <div className="mt-5 rounded-xl bg-slate-900/5 p-4 ring-1 ring-slate-900/10 dark:bg-white/5 dark:ring-white/10">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                      What to expect per request
+                    </p>
+                    <ul className="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                      {p.perCall.map((step) => (
+                        <li key={step} className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500/70 shrink-0 dark:bg-blue-400/80" />
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Small Business: Fine print */}
+                {p.finePrint && (
+                  <div className="mt-4 text-xs leading-5 text-slate-600 dark:text-slate-400">
+                    {p.finePrint.map((line) => (
+                      <p key={line} className="mt-2">
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                )}
+
                 <Link
                   to="/contact"
                   className="mt-6 inline-flex w-full justify-center rounded-xl bg-blue-500 px-4 py-2 font-semibold text-white transition hover:bg-blue-400"
                 >
-                  Request {p.title}
+                  {p.cta ? p.cta : `Request ${p.title}`}
                 </Link>
               </div>
             ))}
